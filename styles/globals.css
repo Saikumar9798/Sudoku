@@ -1,16 +1,146 @@
-html,
-body {
-  padding: 0;
+*,
+*::before,
+*::after {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
+  padding: 0;
   box-sizing: border-box;
+}
+
+:root {
+  --bg: #fff;
+  --selected: #ffbc7b;
+  --highlighted: #fffbf2;
+  --text: #423b43;
+  --text_light: #b6b4b6;
+  --border: #3a3241;
+  --border_light: #e2e3e2;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.sudoku {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 3vw;
+}
+
+#sudoku-wrapper {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  border: 0.5vw solid var(--border);
+  border-radius: 2vw;
+  overflow: hidden;
+  align-items: stretch;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cell {
+  width: 4vw;
+  height: 4vw;
+  outline: none;
+  border: 0.1vw solid var(--border_light);
+  position: relative;
+}
+
+.cell.disabled {
+  background-color: var(--selected);
+  color: var(--border);
+}
+
+input {
+  padding-left: 1.25vw;
+  font-size: 3vw;
+}
+
+.button {
+  padding: 1vw 2vw;
+  background-color: var(--selected);
+  color: var(--text);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 1vw;
+  font-size: 3vw;
+  font-weight: bold;
+}
+
+.buttons-submit-solve {
+  display: grid;
+  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2vw;
+}
+
+.button.solve {
+  background-color: var(--border);
+  color: var(--highlighted);
+}
+
+.success-wrapper {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+.success {
+  background-color: whitesmoke;
+  position: relative;
+  padding: 3vh 6vw;
+  border-radius: 1.5vw;
+  display: grid;
+  place-items: center;
+}
+
+.title {
+  font-size: 3vw;
+  margin-bottom: 5vh;
+}
+
+.button.close {
+  background-color: red;
+  color: white;
+}
+
+.button.pop {
+  font-size: 2vw;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3vw;
+}
+
+.failure-wrapper {
+  position: fixed;
+  top: 3vh;
+  right: 2vw;
+  background-color: var(--selected);
+  color: var(--text);
+  font-size: 2.25vw;
+  padding: 1vh 1vw;
+  border-radius: 1vw;
 }
